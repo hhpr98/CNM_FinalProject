@@ -1,0 +1,40 @@
+﻿@model Byte[]
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Implementing QRCoder in ASP.NET Core - Create QR Code</title>
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        <h3>Generate QR CODE</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Enter text for creating QR Code</label>
+                    </td>
+                    <td>
+                        <input type="text" name="qrText" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button>Submit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+
+    @{
+        if (Model != null)
+        {
+            <h3>QR Code Successfully Generated</h3>
+            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
+        }
+    }
+</body>
+</html>
