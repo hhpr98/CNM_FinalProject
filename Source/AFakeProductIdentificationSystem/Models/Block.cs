@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using static AFakeProductIdentificationSystem.Models.Transaction;
 
 namespace AFakeProductIdentificationSystem.Models
@@ -42,7 +40,9 @@ namespace AFakeProductIdentificationSystem.Models
             {
                 string rawData = PreviousHash + _timeStamp + transactions + _nonce;
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                //var encryptedResult = Encoding.Default.GetString(bytes);
                 return Encoding.Default.GetString(bytes);
+
             }
         }
     }
