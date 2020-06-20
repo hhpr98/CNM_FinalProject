@@ -22,7 +22,7 @@ namespace AFakeProductIdentificationSystem.Controllers
         [HttpPost]
         public ActionResult Index(string qrText)
         {
-            string link = "locallhost:44308/check-product/";
+            string link = "https://localhost:44308/CheckQR/Index/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(link + qrText, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
