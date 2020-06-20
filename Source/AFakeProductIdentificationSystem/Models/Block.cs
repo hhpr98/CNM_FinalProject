@@ -13,14 +13,15 @@ namespace AFakeProductIdentificationSystem.Models
         public string PreviousHash { get; set; }
         public List<Transactions> transactions { get; set; }
         public string Hash { get; private set; }
+        public string productInfor { get; set; }
 
-
-        public Block(DateTime timeStamp, List<Transactions> transactions, string previousHash = "")
+        public Block(DateTime timeStamp, List<Transactions> transactions, string previousHash = "", string productInfor = "")
         {
             _timeStamp = timeStamp;
             _nonce = 0;
             this.transactions = transactions;
             PreviousHash = previousHash;
+            this.productInfor = productInfor;
             Hash = CreateHash();
         }
         public void MineBlock(int proofOfWorkDifficulty)
@@ -38,7 +39,8 @@ namespace AFakeProductIdentificationSystem.Models
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                string rawData = PreviousHash + _timeStamp + transactions + _nonce;
+                //string rawData = PreviousHash + _timeStamp + transactions + _nonce;
+                string rawData = PreviousHash + _timeStamp + productInfor + _nonce;
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
                 //var encryptedResult = Encoding.Default.GetString(bytes);
                 return Encoding.Default.GetString(bytes);

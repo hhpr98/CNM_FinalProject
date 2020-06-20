@@ -25,14 +25,22 @@ namespace AFakeProductIdentificationSystem.Controllers
         private static string acc = ""; // tên ví, rỗng là chưa đăng nhập
 
         // Load , lúc đầu block chỉ có 1 khối, thêm 1 khối giao dịch (cho user1 và user2)
-        public void Load()
+        private void Load()
         {
-            blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 200));
-            blockChain.CreateTransaction(new Transactions(adminAddress, user2Address, 200));
-            blockChain.MineBlock(minerAddress);
-            blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 20));
-            blockChain.CreateTransaction(new Transactions(adminAddress, user2Address, 130));
-            blockChain.MineBlock(minerAddress);
+            using (var ProductDB = new FakeRealProductSystemEntities())
+            {
+                var _product = ProductDB.Products.ToList();
+                foreach (var item in _product)
+                {
+                    //blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 10));
+                    blockChain.MineBlock(minerAddress, getProductString(item));
+                }    
+            }
+        }
+
+        private string getProductString(Product _product)
+        {
+            return _product.pr_id + "-" + _product.pr_name + "-" + _product.pr_branch + "-" + _product.pr_type + "-" + _product.pr_origin + "-" + _product.pr_price.ToString();
         }
 
         public ActionResult Index()

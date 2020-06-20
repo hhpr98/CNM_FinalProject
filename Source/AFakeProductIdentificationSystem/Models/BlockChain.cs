@@ -34,6 +34,19 @@ namespace AFakeProductIdentificationSystem.Models
             Chain.Add(block);
             _pendingTransactions = new List<Transactions>();
         }
+
+        // plugin function : hàm viết thêm
+        public void MineBlock(string minerAddress, string productString)
+        {
+            Transactions minerRewardTransaction = new Transactions(null, minerAddress, _miningReward);
+            _pendingTransactions.Add(minerRewardTransaction);
+            Block block = new Block(DateTime.Now, _pendingTransactions, productString);
+            block.MineBlock(_proofOfWorkDifficulty);
+            block.PreviousHash = Chain.Last().Hash;
+            Chain.Add(block);
+            _pendingTransactions = new List<Transactions>();
+        }
+
         public bool IsValidChain()
         {
             for (int i = 1; i < Chain.Count; i++)
