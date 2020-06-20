@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FakeRealProductSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branches">
+          <Key>
+            <PropertyRef Name="br_id" />
+          </Key>
+          <Property Name="br_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="br_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="br_headquarter" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="pr_id" />
+          </Key>
+          <Property Name="pr_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pr_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="pr_branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="pr_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="pr_origin" Type="nvarchar" MaxLength="255" />
+          <Property Name="pr_price" Type="float" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ty_id" />
+          </Key>
+          <Property Name="ty_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ty_name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="fk_product_branch">
+          <End Role="Branches" Type="Self.Branches" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branches">
+              <PropertyRef Name="br_id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="pr_branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_product_producttype">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ty_id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="pr_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FakeRealProductSystemModelStoreContainer">
+          <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_product_branch" Association="Self.fk_product_branch">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_product_producttype" Association="Self.fk_product_producttype">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FakeRealProductSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="br_id" />
+          </Key>
+          <Property Name="br_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="br_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="br_headquarter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.fk_product_branch" FromRole="Branches" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="pr_id" />
+          </Key>
+          <Property Name="pr_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pr_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pr_branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pr_origin" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pr_price" Type="Double" />
+          <NavigationProperty Name="Branch" Relationship="Self.fk_product_branch" FromRole="Products" ToRole="Branches" />
+          <NavigationProperty Name="ProductType" Relationship="Self.fk_product_producttype" FromRole="Products" ToRole="ProductTypes" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ty_id" />
+          </Key>
+          <Property Name="ty_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ty_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.fk_product_producttype" FromRole="ProductTypes" ToRole="Products" />
+        </EntityType>
+        <Association Name="fk_product_branch">
+          <End Role="Branches" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branches">
+              <PropertyRef Name="br_id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="pr_branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_product_producttype">
+          <End Role="ProductTypes" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ty_id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="pr_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FakeRealProductSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+          <AssociationSet Name="fk_product_branch" Association="Self.fk_product_branch">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_product_producttype" Association="Self.fk_product_producttype">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FakeRealProductSystemModelStoreContainer" CdmEntityContainer="FakeRealProductSystemEntities">
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="FakeRealProductSystemModel.Branch">
+              <MappingFragment StoreEntitySet="Branches">
+                <ScalarProperty Name="br_id" ColumnName="br_id" />
+                <ScalarProperty Name="br_name" ColumnName="br_name" />
+                <ScalarProperty Name="br_headquarter" ColumnName="br_headquarter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="FakeRealProductSystemModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="pr_id" ColumnName="pr_id" />
+                <ScalarProperty Name="pr_name" ColumnName="pr_name" />
+                <ScalarProperty Name="pr_branch" ColumnName="pr_branch" />
+                <ScalarProperty Name="pr_type" ColumnName="pr_type" />
+                <ScalarProperty Name="pr_origin" ColumnName="pr_origin" />
+                <ScalarProperty Name="pr_price" ColumnName="pr_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="FakeRealProductSystemModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="ty_id" ColumnName="ty_id" />
+                <ScalarProperty Name="ty_name" ColumnName="ty_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
