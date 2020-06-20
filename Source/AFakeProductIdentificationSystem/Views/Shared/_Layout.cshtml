@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:red!important; font-weight:bold!important;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #3498DB!important">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,7 +19,7 @@
                 @Html.ActionLink("AFPIS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" >
                     <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                     <li>@Html.ActionLink("Thông tin", "About", "Home")</li>
                     <li>@Html.ActionLink("GenerateQR", "Index", "GenerateQR")</li>

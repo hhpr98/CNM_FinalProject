@@ -4353,6 +4353,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
+  border-style:dotted;
+  border-width: 0px 2px 0px 0px;
+  border-color: #2980B9;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -4669,7 +4672,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #fff!important;
+  font-weight: bold!important;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -4680,7 +4684,11 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+    color: #fff !important;
+    font-weight: bold !important;
+    border-style: dotted;
+    border-width: 0px 2px 0px 0px;
+    border-color: #2980B9;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
