@@ -11,14 +11,16 @@ namespace AFakeProductIdentificationSystem.Controllers
     public class CheckQRController : Controller
     {
         // GET: CheckQR
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            using (var ProductDB = new FakeRealProductSystemEntities())
+            using (var context = new FakeRealProductSystemEntities())
             {
-                var _product = ProductDB.Products.ToList();
+                var _product = (from p in context.Products where (p.pr_id == id) select p).ToList();
                 ViewBag.ListProduct = _product;
             }
-            return View("Index");
+                return View("Index");
         }
+
+
     }
 }
