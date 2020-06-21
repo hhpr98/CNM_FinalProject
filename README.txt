@@ -27,6 +27,7 @@ https://github.com/hhpr98/CNM_FinalProject/blob/master/Doc/H%C6%B0%E1%BB%9Bng%20
 # Tài liệu tham khảo (Ref):  https://github.com/hhpr98/CNM_FinalProject/tree/master/Ref
 
 # Tài liệu báo cáo về ý nghĩa đề tài : 
+https://github.com/hhpr98/CNM_FinalProject/blob/master/Doc/%C3%9D%20ngh%C4%A9a%20%C4%91%E1%BB%81%20t%C3%A0i.docx
 
 # Quá trình thực hiện :
 - Giai đoạn 1 (1/6/2020-10/6/2020)	: Init git, Init source, tìm hiểu đề tài, họp bàn cách thực hiện
