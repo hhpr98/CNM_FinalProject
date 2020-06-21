@@ -7,7 +7,7 @@ using QRCoder;
 using System.IO;
 using System.Drawing;
 using System.Threading.Tasks;
-
+using AFakeProductIdentificationSystem.Models;
 
 namespace AFakeProductIdentificationSystem.Controllers
 {
@@ -15,13 +15,13 @@ namespace AFakeProductIdentificationSystem.Controllers
     {
         // GET: GenerateQR
         public ActionResult Index()
-        {
+        {           
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(string qrText)
-        {
+        {          
             string link = "https://localhost:44308/CheckQR/Index/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(link + qrText, QRCodeGenerator.ECCLevel.Q);

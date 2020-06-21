@@ -14,12 +14,26 @@
             <tbody>
                 <tr>
                     <td>
-                        <label>Nhập nội dung cần tạo mã QR</label>
+                        <label>Chọn sản phẩm cần tạo QR Code</label>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="text" name="qrText" />
+                        <select name="qrText">
+                            <option value="">Select a product</option>
+                            @{
+                                using (var ProductDB = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
+                                {
+                                    var _product = ProductDB.Products.ToList();
+                                    ViewBag.ListProduct = _product;
+                                };
+                                foreach (var item in ViewBag.ListProduct)
+                                {
+                                    <option value="@item.pr_id">@item.pr_name</option>
+                                };
+                            }
+
+                        </select>
                         <button>Xác nhận</button>
                     </td>
                 </tr>
