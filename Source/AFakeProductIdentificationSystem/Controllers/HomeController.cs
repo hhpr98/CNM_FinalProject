@@ -61,11 +61,11 @@ namespace AFakeProductIdentificationSystem.Controllers
         {
             ViewBag.Message = "A Fake Product Identification System - AFPIS";
 
-            using (var ProductDB = new FakeRealProductSystemEntities())
-            {
-                var _product = ProductDB.Products.ToList();
-                ViewBag.ListProduct = _product;
-            }   
+            //using (var ProductDB = new FakeRealProductSystemEntities())
+            //{
+            //    var _product = ProductDB.Products.ToList();
+            //    ViewBag.ListProduct = _product;
+            //}   
 
             return View("About");
         }
