@@ -181,10 +181,6 @@ namespace AFakeProductIdentificationSystem.Models
                         lsTemp.Add("[" + transaction.To + "] has reward " + transaction.Amount.ToString() + " (COIN)");
                     else
                         lsTemp.Add("From: " + transaction.From + " To " + transaction.To + " Amount " + transaction.Amount.ToString());
-                    if (transaction.Description!="")
-                    {
-                        lsTemp.Add("Description: " + transaction.Description);
-                    }    
                 }
                 i++;
                 lsAll.Add(lsTemp);
