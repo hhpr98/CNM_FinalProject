@@ -18,14 +18,14 @@ namespace AFakeProductIdentificationSystem.Controllers
 
         // dùng tạm các biến static này để chứa dữ liệu
         // không dùng static thì mỗi khi gọi actionResult biến blockChain sẽ bị reset về chain rỗng (1 block gốc)
-        private static BlockChain blockChain = new BlockChain(proofOfWorkDifficulty: 2, miningReward: 10);
-        private static bool isLoaded = false; // chưa load -> nếu bằng true thì không load lại
+        public static BlockChain blockChain = new BlockChain(proofOfWorkDifficulty: 2, miningReward: 10);
+        public static bool isLoaded = false; // chưa load -> nếu bằng true thì không load lại
         //private static List<string> walletList = new List<string>() { adminAddress, user1Address, user2Address }; // khởi đầu với 3 ví
         //private static List<string> passwordList = new List<string>() { "admin", "user1", "user2" };
         //private static string acc = ""; // tên ví, rỗng là chưa đăng nhập
 
         // Load , lúc đầu block chỉ có 1 khối, thêm 1 khối giao dịch (cho user1 và user2)
-        private void Load()
+        public static void Load()
         {
             using (var ProductDB = new FakeRealProductSystemEntities())
             {
@@ -41,10 +41,10 @@ namespace AFakeProductIdentificationSystem.Controllers
         public ActionResult Index()
         {
             //Index sẽ là nơi vào đầu tiên
-            if (!isLoaded) // chưa được load (!false => true)
+            if (!HomeController.isLoaded) // chưa được load (!false => true)
             {
-                this.Load();
-                isLoaded = true;
+                HomeController.Load();
+                HomeController.isLoaded = true;
             }
 
             ViewBag.AllChainContent = blockChain.GetHomeInfor();
@@ -55,6 +55,13 @@ namespace AFakeProductIdentificationSystem.Controllers
 
         public ActionResult About()
         {
+            //Index sẽ là nơi vào đầu tiên
+            if (!HomeController.isLoaded) // chưa được load (!false => true)
+            {
+                HomeController.Load();
+                HomeController.isLoaded = true;
+            }
+
             ViewBag.Message = "A Fake Product Identification System - AFPIS";
 
             //using (var ProductDB = new FakeRealProductSystemEntities())

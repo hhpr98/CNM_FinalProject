@@ -15,13 +15,27 @@ namespace AFakeProductIdentificationSystem.Controllers
     {
         // GET: GenerateQR
         public ActionResult Index()
-        {           
+        {
+            //Index sẽ là nơi vào đầu tiên
+            if (!HomeController.isLoaded) // chưa được load (!false => true)
+            {
+                HomeController.Load();
+                HomeController.isLoaded = true;
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(string qrText)
-        {          
+        {
+            //Index sẽ là nơi vào đầu tiên
+            if (!HomeController.isLoaded) // chưa được load (!false => true)
+            {
+                HomeController.Load();
+                HomeController.isLoaded = true;
+            }
+
             string link = "https://localhost:44308/CheckQR/Index/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(link + qrText, QRCodeGenerator.ECCLevel.Q);
