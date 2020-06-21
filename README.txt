@@ -15,8 +15,19 @@
 
 # Demo : 
 
-# Hướng dẫn sử dụng : 
+# Source Code : https://github.com/hhpr98/CNM_FinalProject/tree/master/Source/AFakeProductIdentificationSystem
 
-# Tài liệu tham khảo : 
+# Document : https://github.com/hhpr98/CNM_FinalProject/tree/master/Doc
 
-# Source Code : 
+# Cách cài đặt + Hướng dẫn sử dụng (nằm trong thư mục Doc): 
+https://github.com/hhpr98/CNM_FinalProject/blob/master/Doc/H%C6%B0%E1%BB%9Bng%20d%E1%BA%ABn%20s%E1%BB%AD%20d%E1%BB%A5ng.docx
+
+# Tài liệu tham khảo (Ref):  https://github.com/hhpr98/CNM_FinalProject/tree/master/Ref
+
+# Tài liệu báo cáo về ý nghĩa đề tài : 
+
+# Quá trình thực hiện :
+- Giai đoạn 1 (1/6/2020-10/6/2020)	: Init git, Init source, tìm hiểu đề tài, họp bàn cách thực hiện
+- Giai đoạn 2 (10/6/2020-18/6/2020)	: Coding (QR, blockchain, db, design)
+- Giai đoạn 3 (19/6/2020-end)		: Hoàn tất, fix bug, sửa lỗi giao diện, quay demo 
+
