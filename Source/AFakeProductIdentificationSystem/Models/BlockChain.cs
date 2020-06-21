@@ -41,7 +41,9 @@ namespace AFakeProductIdentificationSystem.Models
             {
                 Block previousBlock = Chain[i - 1];
                 Block currentBlock = Chain[i];
-                if (currentBlock.Hash != currentBlock.CreateHash())
+                //if (currentBlock.Hash != currentBlock.CreateHash())
+                //    return false;
+                if (currentBlock.Hash != currentBlock.CreateHash(getProductString(currentBlock.productId)))
                     return false;
                 if (currentBlock.PreviousHash != previousBlock.Hash)
                     return false;
@@ -178,5 +180,13 @@ namespace AFakeProductIdentificationSystem.Models
             return lsAll;
         }
 
+        private string getProductString(string id)
+        {
+            using (var db = new FakeRealProductSystemEntities())
+            {
+                var _product = db.Products.Find(id);
+                return _product.pr_id + "-" + _product.pr_name + "-" + _product.pr_branch + "-" + _product.pr_type + "-" + _product.pr_origin + "-" + _product.pr_price.ToString();
+            }
+        }
     }
 }

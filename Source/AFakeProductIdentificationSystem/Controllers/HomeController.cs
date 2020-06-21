@@ -38,11 +38,6 @@ namespace AFakeProductIdentificationSystem.Controllers
             }
         }
 
-        private string getProductString(Product _product)
-        {
-            return _product.pr_id + "-" + _product.pr_name + "-" + _product.pr_branch + "-" + _product.pr_type + "-" + _product.pr_origin + "-" + _product.pr_price.ToString();
-        }
-
         public ActionResult Index()
         {
             //Index sẽ là nơi vào đầu tiên
