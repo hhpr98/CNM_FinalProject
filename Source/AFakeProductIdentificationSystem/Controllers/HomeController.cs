@@ -33,8 +33,8 @@ namespace AFakeProductIdentificationSystem.Controllers
                 foreach (var item in _product)
                 {
                     //blockChain.CreateTransaction(new Transactions(adminAddress, user1Address, 10));
-                    blockChain.MineBlock(minerAddress, getProductString(item));
-                }    
+                    blockChain.MineBlock(minerAddress, item.pr_id);
+                }
             }
         }
 
@@ -45,7 +45,7 @@ namespace AFakeProductIdentificationSystem.Controllers
 
         public ActionResult Index()
         {
-            // Index sẽ là nơi vào đầu tiên
+            //Index sẽ là nơi vào đầu tiên
             if (!isLoaded) // chưa được load (!false => true)
             {
                 this.Load();
@@ -53,6 +53,7 @@ namespace AFakeProductIdentificationSystem.Controllers
             }
 
             ViewBag.AllChainContent = blockChain.GetHomeInfor();
+            ViewBag.V = blockChain.IsValidChain();
 
             return View("Index");
         }

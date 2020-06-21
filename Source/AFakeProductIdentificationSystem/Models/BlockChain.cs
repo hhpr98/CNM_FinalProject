@@ -24,23 +24,11 @@ namespace AFakeProductIdentificationSystem.Models
         {
             _pendingTransactions.Add(transaction);
         }
-        public void MineBlock(string minerAddress)
+        public void MineBlock(string minerAddress, string prId)
         {
             Transactions minerRewardTransaction = new Transactions(null, minerAddress, _miningReward);
             _pendingTransactions.Add(minerRewardTransaction);
-            Block block = new Block(DateTime.Now, _pendingTransactions);
-            block.MineBlock(_proofOfWorkDifficulty);
-            block.PreviousHash = Chain.Last().Hash;
-            Chain.Add(block);
-            _pendingTransactions = new List<Transactions>();
-        }
-
-        // plugin function : hàm viết thêm
-        public void MineBlock(string minerAddress, string productString)
-        {
-            Transactions minerRewardTransaction = new Transactions(null, minerAddress, _miningReward);
-            _pendingTransactions.Add(minerRewardTransaction);
-            Block block = new Block(DateTime.Now, _pendingTransactions, productString);
+            Block block = new Block(prId, DateTime.Now, _pendingTransactions);
             block.MineBlock(_proofOfWorkDifficulty);
             block.PreviousHash = Chain.Last().Hash;
             Chain.Add(block);
@@ -82,8 +70,9 @@ namespace AFakeProductIdentificationSystem.Models
         private Block CreateGenesisBlock()
         {
             List<Transactions> transactions = new List<Transactions> { new Transactions("", "", 0) };
-            return new Block(DateTime.Now, transactions, "0");
+            return new Block("", DateTime.Now, transactions, "0");
         }
+
 
         // get all infor but string too long!!!
         public string PrintChain()
