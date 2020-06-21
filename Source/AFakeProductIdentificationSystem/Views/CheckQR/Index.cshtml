@@ -14,13 +14,38 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4zEDx5_bCerfk2IFSQMEiE3acbf4n_nVbEo7XtWHRPs30WHvZ&usqp=CAU" alt="Avatar" style="width:100%; height: 125px">
                     <div class="container" style=" padding: 5px 16px;">
                         <h3><b>@item.pr_name</b></h3>
-                        <h4>@item.pr_branch</h4>
-                        <h4>@item.pr_type</h4>
-                        <h4>@item.pr_origin</h4>
-                        <h4>@item.pr_price</h4>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h4><b>Mã nhãn</b></h4>
+                                <h4><b>Nhãn hiệu</b></h4>
+                                <h4><b>Mã loại</b></h4>
+                                <h4><b>Loại sản phẩm</b></h4>
+                                <h4><b>Xuất xứ</b></h4>
+                                <h4><b>Giá bán</b></h4>
+                            </div>
+                            <div class="col-sm-2" style="margin-left:-30px;">
+                                <h4>@item.pr_branch</h4>
+                                @{
+                                    using (var db = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
+                                    {
+                                        var branchToFind = db.Branches.Find(item.pr_branch);
+                                        <h4>@branchToFind.br_name</h4>
+                                    }
+                                }
+                                <h4>@item.pr_type</h4>
+                                @{
+                                    using (var db = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
+                                    {
+                                        var typeToFind = db.ProductTypes.Find(item.pr_type);
+                                        <h4>@typeToFind.ty_name</h4>
+                                    }
+                                }
+                                <h4>@item.pr_origin</h4>
+                                <h4>@item.pr_price (VNĐ)</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         }
 
