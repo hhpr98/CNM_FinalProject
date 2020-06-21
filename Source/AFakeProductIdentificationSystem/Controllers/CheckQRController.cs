@@ -18,7 +18,8 @@ namespace AFakeProductIdentificationSystem.Controllers
                 var _product = (from p in context.Products where (p.pr_id == id) select p).ToList();
                 ViewBag.ListProduct = _product;
             }
-                return View("Index");
+         
+            return View("Index");
         }
 
 

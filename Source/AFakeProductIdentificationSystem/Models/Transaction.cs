@@ -12,13 +12,13 @@ namespace AFakeProductIdentificationSystem.Models
             public string From { get; }
             public string To { get; }
             public double Amount { get; }
-            public string Description { get; }
-            public Transactions(string from, string to, double amount, string des = 0)
+           
+            public Transactions(string from, string to, double amount)
             {
                 From = from;
                 To = to;
                 Amount = amount;
-                Description = des;
+              
             }
         }
     }
