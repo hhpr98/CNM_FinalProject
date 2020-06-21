@@ -1,5 +1,7 @@
 # CNM_FinalProject
 Đồ án cuối kì các công nghệ mới
+Demo at : 
+
 ------------------------------------
 
 1612209 Nguyễn Hữu Hòa
