@@ -41,7 +41,7 @@ namespace AFakeProductIdentificationSystem.Models
             using (SHA256 sha256 = SHA256.Create())
             {
                 //string rawData = PreviousHash + _timeStamp + transactions + _nonce;
-                string rawData = productInfor + "-" +  _nonce;
+                string rawData = PreviousHash + _timeStamp + productInfor + _nonce;
 
                 // ComputeHash - returns byte array 
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
