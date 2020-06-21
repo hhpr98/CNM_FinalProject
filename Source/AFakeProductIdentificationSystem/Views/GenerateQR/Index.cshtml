@@ -14,17 +14,17 @@
 <body>
     @using (Html.BeginForm(null, null, FormMethod.Post))
     {
-        <h2 style="color: #3498DB; font-weight: bold">Tạo mã QR</h2>
+        <h2 style="color: #3498DB; font-weight: bold">Tạo QR Code</h2>
         <table>
             <tbody>
                 <tr>
                     <td>
-                        <label>Chọn sản phẩm cần tạo QR Code</label>
+                        <h4 style="font-style:italic; color: #3498DB">*Chọn sản phẩm cần tạo QR Code</h4>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <select name="qrText">
+                        <select name="qrText" style="height: 29px; font-size: 18px;">
                             <option value="">Select a product</option>
                             @{
                                 using (var ProductDB = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
@@ -39,7 +39,7 @@
                             }
 
                         </select>
-                        <button>Xác nhận</button>
+                        <button style="height: 30px; width: 90px; background-color: #3498DB; color: #fff; border-width: 0px; border-radius: 2px; font-weight: bold">Xác nhận</button>
                     </td>
                 </tr>
             </tbody>
