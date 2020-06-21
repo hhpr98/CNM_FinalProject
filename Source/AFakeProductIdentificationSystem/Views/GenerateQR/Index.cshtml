@@ -19,7 +19,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <h4 style="font-style:italic; color: #3498DB">*Chọn sản phẩm cần tạo QR Code</h4>
+                        <h4 style="font-style:italic; color: #3498DB">* Chọn sản phẩm cần tạo QR Code</h4>
                     </td>
                 </tr>
                 <tr>
@@ -49,8 +49,8 @@
     @{
         if (Model != null)
         {
-            <h3>Mã QR khởi tạo thành công!</h3>
-            <h5 style="color:red;">* Sử dụng trình quét mã QR của smartphone để quét mã</h5>
+            <h3  style="color: #3498DB">Mã QR khởi tạo thành công!</h3>
+            <h4 style="font-style:italic;color:red;">* Sử dụng trình quét QR Code của smartphone để quét mã</h4>
             <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
         }
     }
