@@ -37,14 +37,24 @@ namespace AFakeProductIdentificationSystem.Models
         }
         public string CreateHash()
         {
+            // Create a SHA256 
             using (SHA256 sha256 = SHA256.Create())
             {
                 //string rawData = PreviousHash + _timeStamp + transactions + _nonce;
-                string rawData = PreviousHash + _timeStamp + productInfor + _nonce;
+                string rawData = productInfor + "-" +  _nonce;
+
+                // ComputeHash - returns byte array 
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
                 //var encryptedResult = Encoding.Default.GetString(bytes);
-                return Encoding.Default.GetString(bytes);
+                //return Encoding.Default.GetString(bytes);
 
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
         }
     }
