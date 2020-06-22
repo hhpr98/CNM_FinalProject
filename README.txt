@@ -1,6 +1,6 @@
 # CNM_FinalProject
 Đồ án cuối kì các công nghệ mới
-Demo at : 
+Demo at : https://youtu.be/2walaMyyVHM
 
 ------------------------------------
 
@@ -15,7 +15,7 @@ Demo at :
 
 ------------------------------------
 
-# Demo : 
+# Demo : https://youtu.be/2walaMyyVHM
 
 # Source Code : https://github.com/hhpr98/CNM_FinalProject/tree/master/Source/AFakeProductIdentificationSystem
 
