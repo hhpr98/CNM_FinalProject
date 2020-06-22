@@ -34,3 +34,11 @@ https://github.com/hhpr98/CNM_FinalProject/blob/master/Doc/%C3%9D%20ngh%C4%A9a%2
 - Giai đoạn 2 (10/6/2020-18/6/2020)	: Coding (QR, blockchain, db, design)
 - Giai đoạn 3 (19/6/2020-end)		: Hoàn tất, fix bug, sửa lỗi giao diện, quay demo 
 
+
+# Công cụ hỗ trợ :
+- Git
+- MS SQL 2014 (or Higher)
+- Framework : QRCode, EntituFramework
+- Bandicam
+- VS Studio 2019
+- App Scanner (Camera điện thoại) - teamviewer mobile addon
