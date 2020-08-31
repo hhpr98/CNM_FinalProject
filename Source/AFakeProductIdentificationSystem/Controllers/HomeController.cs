@@ -11,7 +11,7 @@ namespace AFakeProductIdentificationSystem.Controllers
     public class HomeController : Controller
     {
         // public varible
-        const string minerAddress = "miner1";
+        public static string minerAddress = "miner1";
         const string adminAddress = "admin";
         const string user1Address = "user1";
         const string user2Address = "user2";
