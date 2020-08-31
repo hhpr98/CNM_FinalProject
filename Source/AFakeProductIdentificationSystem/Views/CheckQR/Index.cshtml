@@ -50,7 +50,8 @@
                                         }
                                     }
                                     <h4>@item.pr_origin</h4>
-                                    <h4>@item.pr_price (VNĐ)</h4>
+                                    <h4>@String.Format("{0,15:N0} (VNĐ)", @item.pr_price)</h4>
+                                    <!--0 là index (giống chỉ {0} , 15 là lenght -->
                                 </div>
                             </div>
                         </div>
