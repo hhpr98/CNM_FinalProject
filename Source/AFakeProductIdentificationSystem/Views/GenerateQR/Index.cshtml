@@ -57,5 +57,15 @@
             </div>
         }
     }
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
 </body>
 </html>
