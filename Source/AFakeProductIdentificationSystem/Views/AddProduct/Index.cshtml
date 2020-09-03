@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Add An Product";
+}
+
+@using (Html.BeginForm("Submit", "AddProduct", FormMethod.Post))
+{
+    <h2 style="color: #3498DB; font-weight: bold;margin-bottom: 30px;">Thêm sản phẩm</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <h4 style="font-style:normal; color: #3498DB; width: 180px;">Tên sản phẩm</h4>
+                </td>
+                <td>
+                    <input name="productName" style="width: 250px; height: 29px; font-size: 18px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 style="font-style:normal; color: #3498DB">Nhãn hiệu</h4>
+                </td>
+                <td>
+                    <select name="productBranch" style="width: 250px; height: 29px; font-size: 18px;">
+                        <option value="">Nhãn hiệu</option>
+                        @{
+                            using (var ProductDB = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
+                            {
+                                var _branches = ProductDB.Branches.ToList();
+                                ViewBag.ListBranch = _branches;
+                            };
+                            foreach (var item in ViewBag.ListBranch)
+                            {
+                                <option value="@item.br_id">@item.br_name</option>
+                            };
+                        }
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 style="font-style:normal; color: #3498DB; width: 180px;">Loại sản phẩm</h4>
+                </td>
+                <td>
+                    <select name="productType" style="width: 250px; height: 29px; font-size: 18px;">
+                        <option value="">Loại sản phẩm</option>
+                        @{
+                            using (var ProductDB = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
+                            {
+                                var _type = ProductDB.ProductTypes.ToList();
+                                ViewBag.ListType = _type;
+                            };
+                            foreach (var item in ViewBag.ListType)
+                            {
+                                <option value="@item.ty_id">@item.ty_name</option>
+                            };
+                        }
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 style="font-style:normal; color: #3498DB; width: 180px;">Xuất xứ</h4>
+                </td>
+                <td>
+                    <input name="productLocation" style="width: 250px; height: 29px; font-size: 18px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 style="font-style:normal; color: #3498DB; width: 180px;">Giá bán (VNĐ)</h4>
+                </td>
+                <td>
+                    <input name="productPrice" type="number" style="width: 250px; height: 29px; font-size: 18px;" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button style="height: 30px; width: 90px; background-color: #3498DB; color: #fff; border-width: 0px; border-radius: 2px; font-weight: bold;margin-top: 20px;" type="submit">Xác nhận</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript" charset="utf-8">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}  

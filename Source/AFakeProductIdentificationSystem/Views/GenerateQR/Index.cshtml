@@ -25,7 +25,7 @@
                 <tr>
                     <td colspan="2">
                         <select name="qrText" style="height: 29px; font-size: 18px;">
-                            <option value="">Select a product</option>
+                            <option value="">Chọn sản phẩm</option>
                             @{
                                 using (var ProductDB = new AFakeProductIdentificationSystem.Models.FakeRealProductSystemEntities())
                                 {
@@ -49,10 +49,14 @@
     @{
         if (Model != null)
         {
-            <h3  style="color: #3498DB">Mã QR khởi tạo thành công!</h3>
+            <h3 style="color: #3498DB">Mã QR khởi tạo thành công!</h3>
             <h4 style="font-style:italic;color:red;">* Sử dụng trình quét QR Code của smartphone để quét mã</h4>
-            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
+            <div style="display: flex;flex-direction: column;">
+                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" width="500" height="500" />
+                <a download="@String.Format("AFPIS-{0}.png",Guid.NewGuid())" href="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" style="margin-left: 180px;margin-top: -30px;">Tải xuống QRCode</a>
+            </div>
         }
     }
+
 </body>
 </html>
